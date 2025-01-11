@@ -28,6 +28,7 @@
             border-radius: 15px;
             width: 200px;
             transition: transform 0.3s ease-in-out;
+            position: relative;
         }
         .team:hover {
             transform: scale(1.05);
@@ -36,47 +37,17 @@
             font-size: 1.8rem;
             margin-bottom: 20px;
         }
-        .button-container {
-            margin-top: 40px;
-        }
-        .button {
-            background-color: #ff4757;
-            border: none;
-            color: white;
-            padding: 15px 30px;
-            font-size: 1.2rem;
-            cursor: pointer;
-            border-radius: 10px;
-            transition: background-color 0.3s ease, transform 0.3s ease;
-        }
-        .button:hover {
-            background-color: #ff6b81;
-            transform: scale(1.1);
-        }
-        .champion {
+        .trophy {
             font-size: 2.5rem;
-            margin-top: 50px;
-            opacity: 0;
-            animation: appear 1s ease-in-out forwards;
+            position: absolute;
+            top: -50px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: gold;
         }
-        @keyframes appear {
-            from {
-                opacity: 0;
-                transform: translateY(50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .countdown {
-            font-size: 2.5rem;
-            margin-top: 30px;
-        }
-        .time {
-            color: #ff6b81;
-            font-weight: bold;
+        .score {
+            font-size: 2rem;
+            margin-top: 10px;
         }
     </style>
 </head>
@@ -86,73 +57,16 @@
 
     <div class="team-container">
         <div class="team" id="hsh">
+            <div class="trophy">🏆 0</div>
             <h2>HSH Team</h2>
             <p>Turnuvanın güçlü takımı, HSH!</p>
         </div>
         <div class="team" id="s2g">
+            <div class="trophy">🏆 1</div>
             <h2>S2G Team</h2>
             <p>S2G, zafer için sahada!</p>
         </div>
     </div>
-
-    <div class="countdown">
-        Geri sayım: <span id="time" class="time"></span>
-    </div>
-
-    <h1 id="championText" class="champion"></h1>
-
-    <script>
-        // Azerbaycan saatine göre geri sayım hesaplama
-        function calculateTimeLeft() {
-            const now = new Date();
-            const targetTime = new Date();
-            targetTime.setHours(13, 0, 0); // Saat 21:00
-
-            if (now > targetTime) {
-                targetTime.setDate(targetTime.getDate() + 1); // Eğer saat 21:00 geçtiyse bir sonraki gün için ayarla
-            }
-
-            const difference = targetTime - now;
-
-            const hours = Math.floor((difference / (1000 * 60 * 60)) % 24);
-            const minutes = Math.floor((difference / (1000 * 60)) % 60);
-            const seconds = Math.floor((difference / 1000) % 60);
-
-            return {
-                hours: hours,
-                minutes: minutes,
-                seconds: seconds,
-                timeUp: difference <= 0
-            };
-        }
-
-        function updateCountdown() {
-            const timeLeft = calculateTimeLeft();
-            const timeElement = document.getElementById('time');
-
-            if (timeLeft.timeUp) {
-                timeElement.textContent = '0:0';
-                setTimeout(() => {
-                    timeElement.textContent = 'Zaman Başlıyor!';
-                    resetCountdown();
-                }, 1000);
-                clearInterval(timer); // Zamanlayıcıyı durdur
-            } else {
-                timeElement.textContent = `${timeLeft.hours} saat, ${timeLeft.minutes} dakika, ${timeLeft.seconds} saniye`;
-            }
-        }
-
-        function resetCountdown() {
-            const timeElement = document.getElementById('time');
-            setTimeout(() => {
-                timeElement.textContent = '0:0'; // Takım bilgilerini sıfırla
-                const timer = setInterval(updateCountdown, 1000); // Zamanlayıcıyı başlat
-            }, 1000);
-        }
-
-        const timer = setInterval(updateCountdown, 1000); // Her saniyede bir geri sayımı güncelle
-
-    </script>
 
 </body>
 </html>
