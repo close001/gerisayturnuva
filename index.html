@@ -27,11 +27,16 @@
             padding: 20px;
             border-radius: 15px;
             width: 200px;
-            transition: transform 0.3s ease-in-out;
+            transition: transform 0.3s ease-in-out, background-color 0.3s ease;
             position: relative;
+            cursor: pointer;
         }
         .team:hover {
             transform: scale(1.05);
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+        .team:active {
+            transform: scale(0.95); /* Basılma animasyonu */
         }
         .team h2 {
             font-size: 1.8rem;
@@ -56,12 +61,12 @@
     <h1>HSH vs S2G Tournament Dashboard</h1>
 
     <div class="team-container">
-        <div class="team" id="hsh">
+        <div class="team" id="hsh" onclick="window.location.href='hsh.html'">
             <div class="trophy">🏆 0</div>
             <h2>HSH Team</h2>
             <p>Turnuvanın güçlü takımı, HSH!</p>
         </div>
-        <div class="team" id="s2g">
+        <div class="team" id="s2g" onclick="window.location.href='s2g.html'">
             <div class="trophy">🏆 1</div>
             <h2>S2G Team</h2>
             <p>S2G, zafer için sahada!</p>
