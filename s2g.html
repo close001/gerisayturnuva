@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>S2G Team Information</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(45deg, #4e54c8, #8f94fb);
+            color: white;
+            text-align: center;
+            padding: 50px;
+        }
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        .password-container {
+            margin-bottom: 30px;
+        }
+        input[type="password"] {
+            padding: 10px;
+            font-size: 1rem;
+            border-radius: 5px;
+            border: none;
+            width: 200px;
+        }
+        .button {
+            padding: 10px 20px;
+            font-size: 1rem;
+            background-color: #ff4757;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .button:hover {
+            background-color: #ff6b81;
+        }
+        .info-section {
+            display: none;
+            margin-top: 30px;
+        }
+        .accordion {
+            background-color: #ff4757;
+            color: white;
+            cursor: pointer;
+            padding: 10px;
+            border: none;
+            text-align: left;
+            outline: none;
+            font-size: 1.2rem;
+            transition: 0.4s;
+            width: 300px;
+            margin: 10px auto;
+            border-radius: 10px;
+        }
+        .accordion:hover {
+            background-color: #ff6b81;
+        }
+        .panel {
+            padding: 0 18px;
+            background-color: rgba(255, 255, 255, 0.2);
+            display: none;
+            margin-bottom: 15px;
+            text-align: left;
+            border-radius: 10px;
+        }
+        .panel img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            margin-top: 10px;
+        }
+        .panel-content {
+            margin-top: 20px;
+            font-size: 1.1rem;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>S2G Team Information</h1>
+
+    <div class="password-container" id="passwordContainer">
+        <p>Lütfen şifreyi girin:</p>
+        <input type="password" id="passwordInput" placeholder="Şifre">
+        <button class="button" onclick="checkPassword()">Gönder</button>
+        <p id="errorMessage" style="color: red; display: none;">Yanlış şifre, tekrar deneyin!</p>
+    </div>
+
+    <div id="infoSection" class="info-section">
+        <button class="accordion">AkulaK1</button>
+        <div class="panel">
+            <img src="foto1.png" alt="AkulaK1">
+            <div class="panel-content">
+                <p>Kupa: <span id="akulaKupa"></span></p>
+                <p>Klan: <span id="akulaKlan"></span></p>
+                <p>Karakter sayısı: <span id="akulaKarakter"></span></p>
+                <p>Oynanılan turnuva sayısı: <span id="akulaTurnuva"></span></p>
+            </div>
+        </div>
+
+        <button class="accordion">Feyruzcode</button>
+        <div class="panel">
+            <img src="foto2.png" alt="Feyruzcode">
+            <div class="panel-content">
+                <p>Kupa: <span id="feyruzKupa"></span></p>
+                <p>Klan: <span id="feyruzKlan"></span></p>
+                <p>Karakter sayısı: <span id="feyruzKarakter"></span></p>
+                <p>Oynanılan turnuva sayısı: <span id="feyruzTurnuva"></span></p>
+            </div>
+        </div>
+
+        <button class="accordion">Dolqa</button>
+        <div class="panel">
+            <img src="foto3.png" alt="Dolqa">
+            <div class="panel-content">
+                <p>Kupa: <span id="dolqaKupa"></span></p>
+                <p>Klan: <span id="dolqaKlan"></span></p>
+                <p>Karakter sayısı: <span id="dolqaKarakter"></span></p>
+                <p>Oynanılan turnuva sayısı: <span id="dolqaTurnuva"></span></p>
+            </div>
+        </div>
+
+        <button class="accordion">Ani</button>
+        <div class="panel">
+            <img src="foto4.png" alt="Ani">
+            <div class="panel-content">
+                <p>Kupa: <span id="aniKupa"></span></p>
+                <p>Klan: <span id="aniKlan"></span></p>
+                <p>Karakter sayısı: <span id="aniKarakter"></span></p>
+                <p>Oynanılan turnuva sayısı: <span id="aniTurnuva"></span></p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function checkPassword() {
+            const password = document.getElementById("passwordInput").value;
+            const correctPassword = "CB2025";
+            const errorMessage = document.getElementById("errorMessage");
+            const infoSection = document.getElementById("infoSection");
+            const passwordContainer = document.getElementById("passwordContainer");
+
+            if (password === correctPassword) {
+                passwordContainer.style.display = "none";
+                infoSection.style.display = "block";
+            } else {
+                errorMessage.style.display = "block";
+            }
+        }
+
+        // Accordion açma/kapama işlevi
+        const accordions = document.getElementsByClassName("accordion");
+        for (let i = 0; i < accordions.length; i++) {
+            accordions[i].addEventListener("click", function() {
+                this.classList.toggle("active");
+                const panel = this.nextElementSibling;
+                if (panel.style.display === "block") {
+                    panel.style.display = "none";
+                } else {
+                    panel.style.display = "block";
+                }
+            });
+        }
+    </script>
+
+</body>
+</html>
